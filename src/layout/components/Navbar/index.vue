@@ -69,7 +69,6 @@ import { Component, Vue } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
 import { UserModule } from '@/store/modules/user'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
-import ErrorLog from '@/components/ErrorLog/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
 import HeaderSearch from '@/components/HeaderSearch/index.vue'
 import Screenfull from '@/components/Screenfull/index.vue'
@@ -78,7 +77,6 @@ import Screenfull from '@/components/Screenfull/index.vue'
   name: 'Navbar',
   components: {
     Breadcrumb,
-    ErrorLog,
     Hamburger,
     HeaderSearch,
     Screenfull
