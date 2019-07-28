@@ -12,7 +12,6 @@
         <h3 class="title">
           {{ $t('login.title') }}
         </h3>
-        <lang-select class="set-language" />
       </div>
 
       <el-form-item prop="username">
@@ -88,7 +87,6 @@
       <br>
       <br>
       <br>
-      <social-sign />
     </el-dialog>
   </div>
 </template>
@@ -100,14 +98,10 @@ import { Dictionary } from 'vuex'
 import { Form as ElForm, Input } from 'element-ui'
 import { UserModule } from '@/store/modules/user'
 import { isValidUsername } from '@/utils/validate'
-import LangSelect from '@/components/LangSelect/index.vue'
-import SocialSign from './components/SocialSignin.vue'
 
 @Component({
   name: 'Login',
   components: {
-    LangSelect,
-    SocialSign
   }
 })
 export default class extends Vue {

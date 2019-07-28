@@ -1,20 +1,16 @@
 <template>
   <div class="dashboard-container">
-    <component :is="currentRole" />
+    首页
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { UserModule } from '@/store/modules/user'
-import AdminDashboard from './admin/index.vue'
-import EditorDashboard from './editor/index.vue'
 
 @Component({
   name: 'Dashboard',
   components: {
-    AdminDashboard,
-    EditorDashboard
   }
 })
 export default class extends Vue {
