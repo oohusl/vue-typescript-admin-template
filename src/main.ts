@@ -3,7 +3,6 @@ import Vue, { DirectiveOptions } from 'vue'
 import 'normalize.css'
 import ElementUI from 'element-ui'
 import SvgIcon from 'vue-svgicon'
-
 import '@/styles/element-variables.scss'
 import '@/styles/index.scss'
 
@@ -12,8 +11,9 @@ import store from '@/store'
 import { AppModule } from '@/store/modules/app'
 import router from '@/router'
 import i18n from '@/lang'
+import '@/icons/components'
+
 import '@/permission'
-import '@/utils/error-log'
 import * as directives from '@/directives'
 import * as filters from '@/filters'
 
