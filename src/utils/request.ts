@@ -11,8 +11,12 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     // Add X-Access-Token header to every request, you can add other custom headers here
-    if (UserModule.token) {
-      config.headers['X-Access-Token'] = UserModule.token
+    const token = localStorage.getItem('jhi-authenticationToken') || sessionStorage.getItem('jhi-authenticationToken')
+    if (token) {
+      if (!config.headers) {
+        config.headers = {}
+      }
+      config.headers.Authorization = `Bearer ${token}`
     }
     return config
   },
@@ -32,8 +36,14 @@ service.interceptors.response.use(
     // code == 50004: invalid user (user not exist)
     // code == 50005: username or password is incorrect
     // You can change this part for your own usage.
-    const res = response.data
-    if (res.code !== 20000) {
+    const status = response.status
+    if (status === 403 || status === 401) {
+      // onUnauthenticated();
+      return Promise.reject(response)
+    } else {
+      return Promise.resolve(response)
+    }
+    /* if (res.code !== 20000) {
       Message({
         message: res.message || 'Error',
         type: 'error',
@@ -56,7 +66,7 @@ service.interceptors.response.use(
       return Promise.reject(new Error(res.message || 'Error'))
     } else {
       return response.data
-    }
+    } */
   },
   (error) => {
     Message({

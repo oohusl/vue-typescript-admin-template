@@ -80,7 +80,7 @@ export default class extends Vue {
   }
 
   get avatar() {
-    return UserModule.avatar
+    return 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
   }
 
   private toggleSideBar() {
@@ -88,7 +88,7 @@ export default class extends Vue {
   }
 
   private async logout() {
-    await UserModule.LogOut()
+    await UserModule.Logout()
     this.$router.push(`/login?redirect=${this.$route.fullPath}`)
   }
 }

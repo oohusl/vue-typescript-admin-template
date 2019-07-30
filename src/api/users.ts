@@ -1,21 +1,20 @@
 import request from '@/utils/request'
 
-export const getUserInfo = (data: any) =>
+export const getUserInfo = () =>
   request({
-    url: '/users/info',
-    method: 'post',
-    data
+    url: '/uaa/api/account',
+    method: 'get'
   })
 
 export const login = (data: any) =>
   request({
-    url: '/users/login',
+    url: '/uaa/api/authenticate',
     method: 'post',
     data
   })
 
 export const logout = () =>
   request({
-    url: '/users/logout',
+    url: '/uaa/users/logout',
     method: 'post'
   })

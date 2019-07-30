@@ -2,11 +2,18 @@ const path = require('path')
 const name = 'Vue Typescript Admin'
 
 module.exports = {
+  devServer: {
+    port: 8090,
+    proxy: {
+      "/uaa": {
+        target: "http://dcm2.apps.datoucoin.com/",
+        ws: true,
+        changeOrigin: true
+      }
+    }
+  },
   publicPath: process.env.NODE_ENV === 'production' ? '/vue-typescript-admin-template/' : '/', // TODO: Remember to change this to fit your need
   lintOnSave: process.env.NODE_ENV === 'development',
-  pwa: {
-    name: name
-  },
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
