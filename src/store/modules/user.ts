@@ -4,6 +4,22 @@ import store from '@/store'
 import { timingSafeEqual } from 'crypto'
 import { rejects } from 'assert'
 
+export interface IUser {
+  id?: any;
+  login?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  activated?: boolean;
+  langKey?: string;
+  authorities?: string[];
+  createdBy?: string;
+  createdDate?: Date;
+  lastModifiedBy?: string;
+  lastModifiedDate?: Date;
+}
+
+
 export interface IUserState {
   logon: boolean,
   account: any,
