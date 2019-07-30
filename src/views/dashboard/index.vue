@@ -25,7 +25,7 @@ export default class extends Vue {
   }
 
   get roles() {
-    return UserModule.account
+    return UserModule.roles
   }
 }
 </script>

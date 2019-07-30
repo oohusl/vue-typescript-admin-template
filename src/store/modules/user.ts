@@ -2,11 +2,13 @@ import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-dec
 import { login, logout, getUserInfo } from '@/api/users'
 import store from '@/store'
 import { timingSafeEqual } from 'crypto'
+import { rejects } from 'assert'
 
 export interface IUserState {
   logon: boolean,
   account: any,
   authenticated: boolean,
+  roles: Array<string>
 }
 
 @Module({ dynamic: true, store, name: 'user' })
@@ -14,6 +16,7 @@ class User extends VuexModule implements IUserState {
   logon = false
   account = null
   authenticated = false
+  roles = []
 
   @Mutation
   _authenticated(authenticated: boolean) {
@@ -23,6 +26,7 @@ class User extends VuexModule implements IUserState {
   @Mutation
   _account(account:any) {
     this.account = account
+    this.roles = account.authorities
   }
 
   @Action
@@ -39,6 +43,7 @@ class User extends VuexModule implements IUserState {
       // }
     }
     this._authenticated(true)
+
     // this.GetUserInfo();
   }
 
