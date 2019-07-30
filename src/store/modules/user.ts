@@ -16,42 +16,42 @@ class User extends VuexModule implements IUserState {
   authenticated = false
 
   @Mutation
-  _authenticated(authenticated: boolean){
-    this.authenticated = authenticated;
+  _authenticated(authenticated: boolean) {
+    this.authenticated = authenticated
   }
 
   @Mutation
-  _account(account:any){
-    this.account = account;
+  _account(account:any) {
+    this.account = account
   }
 
   @Action
   public async Login(userInfo: { username: string, password: string }) {
     let { username, password } = userInfo
     username = username.trim()
-    const { data } = await login({ username, password });
-    const bearerToken = data.id_token;
+    const { data } = await login({ username, password })
+    const bearerToken = data.id_token
     if (bearerToken) {
       // if (this.rememberMe) {
       //   localStorage.setItem('jhi-authenticationToken', jwt);
       // } else {
-      sessionStorage.setItem('jhi-authenticationToken', bearerToken);
+      sessionStorage.setItem('jhi-authenticationToken', bearerToken)
       // }
     }
-    this._authenticated(true);
-    //this.GetUserInfo();
+    this._authenticated(true)
+    // this.GetUserInfo();
   }
 
   @Action
   public Logout() {
     this.account = null
-    this._authenticated(false);
+    this._authenticated(false)
   }
 
   @Action
   public async GetUserInfo() {
     const { data } = await getUserInfo()
-    this._account(data);
+    this._account(data)
   }
 }
 

@@ -5,8 +5,8 @@ module.exports = {
   devServer: {
     port: 8090,
     proxy: {
-      "/uaa": {
-        target: "http://dcm2.apps.datoucoin.com/",
+      '/uaa': {
+        target: 'http://dcm2.apps.datoucoin.com/',
         ws: true,
         changeOrigin: true
       }
