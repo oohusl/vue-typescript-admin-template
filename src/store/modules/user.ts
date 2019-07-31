@@ -4,35 +4,19 @@ import store from '@/store'
 import { timingSafeEqual } from 'crypto'
 import { rejects } from 'assert'
 
-export interface IUser {
-  id?: any;
-  login?: string;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  activated?: boolean;
-  langKey?: string;
-  authorities?: string[];
-  createdBy?: string;
-  createdDate?: Date;
-  lastModifiedBy?: string;
-  lastModifiedDate?: Date;
-}
-
-
 export interface IUserState {
   logon: boolean,
-  account: any,
   authenticated: boolean,
-  roles: Array<string>
+  login: string,
+  roles? : string[]
 }
 
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule implements IUserState {
   logon = false
-  account = null
   authenticated = false
-  roles = []
+  login: string = ''
+  roles?:string[] = []
 
   @Mutation
   _authenticated(authenticated: boolean) {
@@ -41,7 +25,7 @@ class User extends VuexModule implements IUserState {
 
   @Mutation
   _account(account:any) {
-    this.account = account
+    this.login = account.login
     this.roles = account.authorities
   }
 
@@ -65,7 +49,8 @@ class User extends VuexModule implements IUserState {
 
   @Action
   public Logout() {
-    this.account = null
+    this.login = undefined
+    this.roles = undefined
     this._authenticated(false)
   }
 

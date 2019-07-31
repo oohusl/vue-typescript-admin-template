@@ -21,13 +21,14 @@ router.beforeEach(async(to: Route, _: Route, next: any) => {
       NProgress.done()
     } else {
       // Check whether the user has obtained his permission roles
-      if (!UserModule.account || (UserModule.account as any).authorities.length === 0) {
+      if (!UserModule.login) {
         try {
           // Get user info, including roles
           await UserModule.GetUserInfo()
           // Set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true })
         } catch (err) {
+          debugger
           // Remove token and redirect to login page
           UserModule.Logout()
           Message.error(err || 'Has Error')
