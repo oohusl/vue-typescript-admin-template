@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">
-      name:{{ 首页 }}
+      name:{{ name }}
     </div>
     <div class="dashboard-text">
       roles:<span
