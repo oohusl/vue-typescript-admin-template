@@ -28,7 +28,9 @@ export default new Router({
     {
       path: '/login',
       component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
-      meta: { hidden: true }
+      meta: { 
+        title: '登录',
+        hidden: true }
     },
     {
       path: '/404',
@@ -44,7 +46,7 @@ export default new Router({
           path: 'dashboard',
           component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
           meta: {
-            title: 'Dashboard',
+            title: '首页',
             icon: 'dashboard'
           }
         }
