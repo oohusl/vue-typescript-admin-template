@@ -7,7 +7,7 @@ import { rejects } from 'assert'
 export interface IUserState {
   logon: boolean,
   authenticated: boolean,
-  login: string,
+  login?: string,
   roles? : string[]
 }
 
@@ -15,12 +15,16 @@ export interface IUserState {
 class User extends VuexModule implements IUserState {
   logon = false
   authenticated = false
-  login: string = ''
+  login?: string = ''
   roles?:string[] = []
 
   @Mutation
   _authenticated(authenticated: boolean) {
     this.authenticated = authenticated
+    if (!authenticated) {
+      this.login = undefined
+      this.roles = undefined
+    }
   }
 
   @Mutation
@@ -49,8 +53,6 @@ class User extends VuexModule implements IUserState {
 
   @Action
   public Logout() {
-    this.login = undefined
-    this.roles = undefined
     this._authenticated(false)
   }
 

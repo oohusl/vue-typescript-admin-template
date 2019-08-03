@@ -51,9 +51,9 @@ export default class extends Vue {
     )
     const first = matched[0]
     if (!this.isDashboard(first)) {
-      matched = [
-        //{ path: '/dashboard1', meta: { title: '首页' } } as RouteRecord
-      ].concat(matched)
+      /* matched = [
+        { path: '/dashboard', meta: { title: '首页' } } as RouteRecord
+      ].concat(matched) */
     }
     this.breadcrumbs = matched.filter(item => {
       return item.meta && item.meta.title && item.meta.breadcrumb !== false
@@ -62,7 +62,7 @@ export default class extends Vue {
 
   private isDashboard(route: RouteRecord) {
     const name = route && route.meta && route.meta.title
-    return name === 'Dashboard'
+    return name === '首页'
   }
 
   private pathCompile(path: string) {
