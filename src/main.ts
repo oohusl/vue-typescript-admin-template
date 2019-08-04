@@ -13,6 +13,11 @@ import router from '@/router'
 import '@/icons/components'
 import '@/permission'
 
+import OTCCoinService from '@/views/otc-coin/otc-coin.service'
+
+const oTCCoinService = new OTCCoinService();
+
+
 Vue.use(ElementUI)
 Vue.use(SvgIcon, {
   tagName: 'svg-icon',
@@ -25,5 +30,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  provide: {oTCCoinService: ()=>{return oTCCoinService}},
   render: (h) => h(App)
 }).$mount('#app')

@@ -53,6 +53,21 @@ export default new Router({
       ]
     },
     {
+      path: '/otc-coin',
+      component: Layout,
+      redirect: '/otc-coin',
+      children: [
+        {
+          path: 'otc-coin',
+          component: () => import(/* webpackChunkName: "dashboard" */ '@/views/otc-coin/otc-coin.vue'),
+          meta: {
+            title: 'OTC合约管理',
+            icon: 'dashboard'
+          }
+        }
+      ]
+    },
+    {
       path: '/example',
       component: Layout,
       redirect: '/example/tree',
