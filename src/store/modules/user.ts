@@ -60,13 +60,19 @@ class User extends VuexModule implements IUserState {
   @Action
   public Logout() {
     this._authenticated(false);
+    localStorage.removeItem("jhi-authenticationToken");
   }
 
   @Action
   public async GetUserInfo() {
-    const { data } = await getUserInfo();
-    this._authenticated(true);
-    this._account(data);
+    try {
+      const { data } = await getUserInfo();
+      this._authenticated(true);
+      this._account(data);
+    } catch (error) {
+      console.error(error);
+      localStorage.removeItem("jhi-authenticationToken");
+    }
   }
 }
 

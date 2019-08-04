@@ -14,7 +14,10 @@ router.beforeEach(async (to: Route, _: Route, next: any) => {
   NProgress.start();
 
   // Determine whether the user has logged in
-  if (!UserModule.authenticated) {
+  if (
+    !UserModule.authenticated &&
+    localStorage.getItem("jhi-authenticationToken")
+  ) {
     await UserModule.GetUserInfo();
   }
   if (UserModule.authenticated) {
