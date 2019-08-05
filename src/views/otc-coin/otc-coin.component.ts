@@ -1,12 +1,12 @@
-import { mixins } from "vue-class-component";
-import { Component, Inject, Vue } from "vue-property-decorator";
-import { IOTCCoin } from "./otc-coin.model";
+import { mixins } from 'vue-class-component'
+import { Component, Inject, Vue } from 'vue-property-decorator'
+import { IOTCCoin } from './otc-coin.model'
 
-import OTCCoinService from "./otc-coin.service";
+import OTCCoinService from './otc-coin.service'
 
 @Component
 export default class OTCCoin extends Vue {
-  @Inject("oTCCoinService") private oTCCoinService: () => OTCCoinService;
+  @Inject('oTCCoinService') private oTCCoinService: () => OTCCoinService;
 
   private tableKey = 0;
   private list: IOTCCoin[] = [];
@@ -18,40 +18,40 @@ export default class OTCCoin extends Vue {
     importance: undefined,
     title: undefined,
     type: undefined,
-    sort: "+id"
+    sort: '+id'
   };
   private importanceOptions = [1, 2, 3];
   private sortOptions = [
-    { label: "ID Ascending", key: "+id" },
-    { label: "ID Descending", key: "-id" }
+    { label: 'ID Ascending', key: '+id' },
+    { label: 'ID Descending', key: '-id' }
   ];
 
   created() {
-    this.getList();
+    this.getList()
   }
   private async getList() {
-    this.listLoading = false;
-    const { data } = await this.oTCCoinService().retrieve();
-    this.list = data.items;
-    this.total = data.total;
+    this.listLoading = false
+    const { data } = await this.oTCCoinService().retrieve()
+    this.list = data.items
+    this.total = data.total
     // Just to simulate the time of the request
     setTimeout(() => {
-      this.listLoading = false;
-    }, 0.5 * 1000);
+      this.listLoading = false
+    }, 0.5 * 1000)
   }
   private handleFilter() {
-    this.listQuery.page = 1;
-    this.getList();
+    this.listQuery.page = 1
+    this.getList()
   }
   private handleModifyStatus(row: any, status: string) {
     this.$message({
-      message: "操作成功",
-      type: "success"
-    });
-    row.status = status;
+      message: '操作成功',
+      type: 'success'
+    })
+    row.status = status
   }
   private sortChange(data: any) {
-    const { prop, order } = data;
+    const { prop, order } = data
   }
 
   private handleCreate() {}

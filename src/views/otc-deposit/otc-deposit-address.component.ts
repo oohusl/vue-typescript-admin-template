@@ -1,8 +1,8 @@
-import { mixins } from 'vue-class-component';
-import { Component, Inject, Vue } from 'vue-property-decorator';
-import { OTCDepositAddress } from './otc-deposit-address.model';
+import { mixins } from 'vue-class-component'
+import { Component, Inject, Vue } from 'vue-property-decorator'
+import { OTCDepositAddress } from './otc-deposit-address.model'
 
-import OTCDepositAddressService from './otc-deposit-address.service';
+import OTCDepositAddressService from './otc-deposit-address.service'
 
 @Component
 export default class extends Vue {
@@ -28,31 +28,31 @@ export default class extends Vue {
   ];
 
   created() {
-    this.getList();
+    this.getList()
   }
   private async getList() {
-    this.listLoading = false;
-    const { data } = await this.oTCDepositAddressService().retrieve();
-    this.list = data.items;
-    this.total = data.total;
+    this.listLoading = false
+    const { data } = await this.oTCDepositAddressService().retrieve()
+    this.list = data.items
+    this.total = data.total
     // Just to simulate the time of the request
     setTimeout(() => {
-      this.listLoading = false;
-    }, 0.5 * 1000);
+      this.listLoading = false
+    }, 0.5 * 1000)
   }
   private handleFilter() {
-    this.listQuery.page = 1;
-    this.getList();
+    this.listQuery.page = 1
+    this.getList()
   }
   private handleModifyStatus(row: any, status: string) {
     this.$message({
       message: '操作成功',
       type: 'success'
-    });
-    row.status = status;
+    })
+    row.status = status
   }
   private sortChange(data: any) {
-    const { prop, order } = data;
+    const { prop, order } = data
   }
 
   private handleCreate() {}

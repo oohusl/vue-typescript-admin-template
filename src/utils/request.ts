@@ -1,31 +1,31 @@
-import axios from "axios";
-import { Message, MessageBox } from "element-ui";
-import { UserModule } from "@/store/modules/user";
+import axios from 'axios'
+import { Message, MessageBox } from 'element-ui'
+import { UserModule } from '@/store/modules/user'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
-});
+})
 
 // Request interceptors
 axios.interceptors.request.use(
   config => {
     // Add X-Access-Token header to every request, you can add other custom headers here
     const token =
-      localStorage.getItem("jhi-authenticationToken") ||
-      sessionStorage.getItem("jhi-authenticationToken");
+      localStorage.getItem('jhi-authenticationToken') ||
+      sessionStorage.getItem('jhi-authenticationToken')
     if (token) {
       if (!config.headers) {
-        config.headers = {};
+        config.headers = {}
       }
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `Bearer ${token}`
     }
-    return config;
+    return config
   },
   error => {
-    Promise.reject(error);
+    Promise.reject(error)
   }
-);
+)
 
 // Response interceptors
 axios.interceptors.response.use(
@@ -38,12 +38,12 @@ axios.interceptors.response.use(
     // code == 50004: invalid user (user not exist)
     // code == 50005: username or password is incorrect
     // You can change this part for your own usage.
-    const status = response.status;
+    const status = response.status
     if (status === 403 || status === 401) {
       // onUnauthenticated();
-      return Promise.reject(response);
+      return Promise.reject(response)
     } else {
-      return Promise.resolve(response);
+      return Promise.resolve(response)
     }
     /* if (res.code !== 20000) {
       Message({
@@ -73,32 +73,32 @@ axios.interceptors.response.use(
   error => {
     Message({
       message: error.message,
-      type: "error",
+      type: 'error',
       duration: 5 * 1000
-    });
-    return Promise.reject(error);
+    })
+    return Promise.reject(error)
   }
-);
+)
 
 // Request interceptors
 service.interceptors.request.use(
   config => {
     // Add X-Access-Token header to every request, you can add other custom headers here
     const token =
-      localStorage.getItem("jhi-authenticationToken") ||
-      sessionStorage.getItem("jhi-authenticationToken");
+      localStorage.getItem('jhi-authenticationToken') ||
+      sessionStorage.getItem('jhi-authenticationToken')
     if (token) {
       if (!config.headers) {
-        config.headers = {};
+        config.headers = {}
       }
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `Bearer ${token}`
     }
-    return config;
+    return config
   },
   error => {
-    Promise.reject(error);
+    Promise.reject(error)
   }
-);
+)
 
 // Response interceptors
 service.interceptors.response.use(
@@ -111,12 +111,12 @@ service.interceptors.response.use(
     // code == 50004: invalid user (user not exist)
     // code == 50005: username or password is incorrect
     // You can change this part for your own usage.
-    const status = response.status;
+    const status = response.status
     if (status === 403 || status === 401) {
       // onUnauthenticated();
-      return Promise.reject(response);
+      return Promise.reject(response)
     } else {
-      return Promise.resolve(response);
+      return Promise.resolve(response)
     }
     /* if (res.code !== 20000) {
       Message({
@@ -146,11 +146,11 @@ service.interceptors.response.use(
   error => {
     Message({
       message: error.message,
-      type: "error",
+      type: 'error',
       duration: 5 * 1000
-    });
-    return Promise.reject(error);
+    })
+    return Promise.reject(error)
   }
-);
+)
 
-export default service;
+export default service

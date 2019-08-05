@@ -63,12 +63,21 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="Date"
+        label="支付方式"
         width="150px"
         align="center"
       >
         <template slot-scope="scope">
-          <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ scope.row.method }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="账号"
+        width="150px"
+        align="center"
+      >
+        <template slot-scope="scope">
+          <span>{{ scope.row.cardNo }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -107,5 +116,5 @@
   </div>
 </template>
 
-<script lang="ts" src="./otc-deposit-address.component.ts">
+<script lang="ts" src="./user-payment-method.component.ts">
 </script>

@@ -1,10 +1,10 @@
-import { Component, Vue, Inject } from 'vue-property-decorator';
+import { Component, Vue, Inject } from 'vue-property-decorator'
 
-import { numeric, required, minLength, maxLength } from 'vuelidate/lib/validators';
+import { numeric, required, minLength, maxLength } from 'vuelidate/lib/validators'
 
-import AlertService from '@/shared/alert/alert.service';
-import { IOTCCoin, OTCCoin } from '@/shared/model/otc-coin.model';
-import OTCCoinService from './otc-coin.service';
+import AlertService from '@/shared/alert/alert.service'
+import { IOTCCoin, OTCCoin } from '@/shared/model/otc-coin.model'
+import OTCCoinService from './otc-coin.service'
 
 const validations: any = {
   oTCCoin: {
@@ -25,7 +25,7 @@ const validations: any = {
     maxFee: {},
     sortSequence: {}
   }
-};
+}
 
 @Component({
   validations
@@ -39,31 +39,31 @@ export default class OTCCoinUpdate extends Vue {
   beforeRouteEnter(to, from, next) {
     next(vm => {
       if (to.params.oTCCoinId) {
-        vm.retrieveOTCCoin(to.params.oTCCoinId);
+        vm.retrieveOTCCoin(to.params.oTCCoinId)
       }
-    });
+    })
   }
 
   public save(): void {
-    this.isSaving = true;
+    this.isSaving = true
     if (this.oTCCoin.id) {
       this.oTCCoinService()
         .update(this.oTCCoin)
         .then(param => {
-          this.isSaving = false;
-          this.$router.go(-1);
-          const message = 'A OTCCoin is updated with identifier ' + param.id;
-          this.alertService().showAlert(message, 'info');
-        });
+          this.isSaving = false
+          this.$router.go(-1)
+          const message = 'A OTCCoin is updated with identifier ' + param.id
+          this.alertService().showAlert(message, 'info')
+        })
     } else {
       this.oTCCoinService()
         .create(this.oTCCoin)
         .then(param => {
-          this.isSaving = false;
-          this.$router.go(-1);
-          const message = 'A OTCCoin is created with identifier ' + param.id;
-          this.alertService().showAlert(message, 'success');
-        });
+          this.isSaving = false
+          this.$router.go(-1)
+          const message = 'A OTCCoin is created with identifier ' + param.id
+          this.alertService().showAlert(message, 'success')
+        })
     }
   }
 
@@ -71,12 +71,12 @@ export default class OTCCoinUpdate extends Vue {
     this.oTCCoinService()
       .find(oTCCoinId)
       .then(res => {
-        this.oTCCoin = res;
-      });
+        this.oTCCoin = res
+      })
   }
 
   public previousState(): void {
-    this.$router.go(-1);
+    this.$router.go(-1)
   }
 
   public initRelationships(): void {}

@@ -1,8 +1,8 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Layout from '@/layout/index.vue';
+import Vue from 'vue'
+import Router from 'vue-router'
+import Layout from '@/layout/index.vue'
 
-Vue.use(Router);
+Vue.use(Router)
 
 /*
   redirect:                      if set to 'noredirect', no redirect action will be trigger when clicking the breadcrumb
@@ -18,9 +18,9 @@ export default new Router({
   // mode: 'history',  // Enable this if you need.
   scrollBehavior: (to, from, savedPosition) => {
     if (savedPosition) {
-      return savedPosition;
+      return savedPosition
     } else {
-      return { x: 0, y: 0 };
+      return { x: 0, y: 0 }
     }
   },
   base: process.env.BASE_URL,
@@ -72,16 +72,16 @@ export default new Router({
       ]
     },
     {
-      path: '/otc-coin',
+      path: '/user-payment-method',
       component: Layout,
-      redirect: '/otc-coin',
+      redirect: '/user-payment-method',
       children: [
         {
-          path: 'otc-coin',
+          path: 'user-payment-method',
           component: () =>
-            import(/* webpackChunkName: "dashboard" */ '@/views/otc-coin/otc-coin.vue'),
+            import('@/views/user-payment-method/user-payment-method.vue'),
           meta: {
-            title: 'OTC合约管理',
+            title: '用户收款方式管理',
             icon: 'dashboard'
           }
         }
@@ -209,4 +209,4 @@ export default new Router({
       meta: { hidden: true }
     }
   ]
-});
+})
