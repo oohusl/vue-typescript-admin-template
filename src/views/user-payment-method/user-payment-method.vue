@@ -8,7 +8,6 @@
         class="filter-item"
         @keyup.enter.native="handleFilter"
       />
-
       <el-select
         v-model="listQuery.sort"
         style="width: 140px"
@@ -49,12 +48,10 @@
       fit
       highlight-current-row
       style="width: 100%;"
-      @sort-change="sortChange"
     >
       <el-table-column
         label="ID"
         prop="id"
-        sortable="custom"
         align="center"
         width="80"
       >
@@ -95,7 +92,7 @@
             修改
           </el-button>
           <el-button
-            v-if="row.status!='published'"
+            v-if="row.status !== 'published'"
             size="mini"
             type="success"
             @click="handleModifyStatus(row,'published')"
@@ -103,7 +100,7 @@
             发布
           </el-button>
           <el-button
-            v-if="row.status!='deleted'"
+            v-if="row.status !== 'deleted'"
             size="mini"
             type="danger"
             @click="handleModifyStatus(row,'deleted')"
@@ -113,6 +110,45 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <el-dialog
+      :title="textMap[dialogStatus]"
+      :visible.sync="dialogFormVisible"
+    >
+      <el-form
+        ref="dataForm"
+        :rules="rules"
+        :model="tempItem"
+        label-position="left"
+        label-width="100px"
+        style="width: 400px; margin-left:50px;"
+      >
+        <el-form-item
+          label="账号"
+          prop="type"
+        >
+          <el-input
+            v-model="tempItem.cardNo"
+            class="filter-item"
+            placeholder="Please select"
+          />
+        </el-form-item>
+      </el-form>
+      <div
+        slot="footer"
+        class="dialog-footer"
+      >
+        <el-button @click="dialogFormVisible = false">
+          取消
+        </el-button>
+        <el-button
+          type="primary"
+          @click="dialogStatus==='create'?createData():updateData()"
+        >
+          确定
+        </el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 

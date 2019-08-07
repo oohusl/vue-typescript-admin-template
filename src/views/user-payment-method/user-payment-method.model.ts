@@ -21,13 +21,4 @@ export interface IUserPaymentMethod {
 }
 
 export class UserPaymentMethod implements IUserPaymentMethod {
-  constructor(
-    public id?: number,
-    public login?: string,
-    public method?: PaymentMethod,
-    public cardNo?: string,
-    public accountName?: string,
-    public status?: NormalStatus,
-    public otcquote?: any
-  ) {}
 }

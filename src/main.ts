@@ -13,11 +13,7 @@ import router from '@/router'
 import '@/icons/components'
 import '@/permission'
 
-import OTCCoinService from '@/views/otc-coin/otc-coin.service'
-import OTCDepositAddressService from '@/views/otc-deposit/otc-deposit-address.service'
 import UserPaymentMethodService from '@/views/user-payment-method/user-payment-method.service'
-
-const oTCCoinService = new OTCCoinService()
 
 Vue.use(ElementUI)
 Vue.use(SvgIcon, {
@@ -32,12 +28,6 @@ new Vue({
   router,
   store,
   provide: {
-    oTCCoinService: () => {
-      return oTCCoinService
-    },
-    oTCDepositAddressService: () => {
-      return new OTCDepositAddressService()
-    },
     UserPaymentMethodService: () => {
       return new UserPaymentMethodService()
     }

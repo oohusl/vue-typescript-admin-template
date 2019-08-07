@@ -56,22 +56,6 @@ export default new Router({
       ]
     },
     {
-      path: '/otc-deposit-address',
-      component: Layout,
-      redirect: '/otc-deposit-address',
-      children: [
-        {
-          path: 'otc-deposit-address',
-          component: () =>
-            import(/* webpackChunkName: "dashboard" */ '@/views/otc-deposit/otc-deposit-address.vue'),
-          meta: {
-            title: 'OTC冲币地址管理',
-            icon: 'dashboard'
-          }
-        }
-      ]
-    },
-    {
       path: '/user-payment-method',
       component: Layout,
       redirect: '/user-payment-method',
@@ -81,7 +65,7 @@ export default new Router({
           component: () =>
             import('@/views/user-payment-method/user-payment-method.vue'),
           meta: {
-            title: '用户收款方式管理',
+            title: 'CURD',
             icon: 'dashboard'
           }
         }
